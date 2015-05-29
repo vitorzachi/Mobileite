@@ -3,22 +3,24 @@ package br.edu.unochapeco.mobileite;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-
-import java.net.URI;
+import android.widget.EditText;
 
 
 public class LoginActivity extends ActionBarActivity {
 
     private SharedPreferences preferences;
+    private SharedPreferences.Editor editor;
+    private EditText txtCodigo, txtCpf;
 
 
-    public void ligarSuporte(View view){
-        Intent intent=new Intent(Intent.ACTION_CALL, Uri.parse("tel:4999188882"));
+    public void ligarSuporte(View view) {
+        Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:4999188882"));
         startActivity(intent);
     }
 
@@ -26,6 +28,25 @@ public class LoginActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        txtCodigo = (EditText) findViewById(R.id.txtCodigo);
+        txtCpf = (EditText) findViewById(R.id.txtCpf);
+
+        preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        editor = preferences.edit();
+
+        fazLogin();
+    }
+
+    private void vaiParaHome() {
+        Intent intent = new Intent(this, HomeActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
+    private void fazLogin() {
+        // implementar
+
     }
 
     @Override
@@ -37,9 +58,6 @@ public class LoginActivity extends ActionBarActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
