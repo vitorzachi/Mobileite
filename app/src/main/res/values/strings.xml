@@ -3,4 +3,8 @@
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="digiteCodigo">Digite seu código</string>
+    <string name="digiteCpf">Digite seu CPF</string>
+    <string name="entrar">Entrar</string>
+    <string name="login_help">Precisa de ajuda? Ligue para nós!</string>
 </resources>

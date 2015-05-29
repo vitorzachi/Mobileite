@@ -1,12 +1,26 @@
 package br.edu.unochapeco.mobileite;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.net.Uri;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+
+import java.net.URI;
 
 
 public class LoginActivity extends ActionBarActivity {
+
+    private SharedPreferences preferences;
+
+
+    public void ligarSuporte(View view){
+        Intent intent=new Intent(Intent.ACTION_CALL, Uri.parse("tel:4999188882"));
+        startActivity(intent);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
