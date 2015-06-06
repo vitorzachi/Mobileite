@@ -52,10 +52,14 @@ public class BuscaAmostrasService extends IntentService {
 
             List<Analise> analises = Constantes.getFromJSON(reader, new TypeToken<List<Analise>>(){});
             Log.e("amostras", "foi buscar amostras");
+            Log.e("amostras", analises.toString());
+
             // TODO salvar as análises
         } catch (IOException e) {
             Toast.makeText(this, R.string.buscar_amostras_erro, Toast.LENGTH_LONG).show();
             Log.e("amostras", "erro ao buscar");
         }
     }
+
+
 }
