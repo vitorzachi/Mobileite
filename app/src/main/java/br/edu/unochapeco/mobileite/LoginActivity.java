@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -26,6 +27,7 @@ public class LoginActivity extends ActionBarActivity  {
     private SharedPreferences preferences;
     private SharedPreferences.Editor editor;
     private EditText txtCodigo, txtCpf;
+    private Button button;
 
 
     public void ligarSuporte(View view) {
@@ -41,6 +43,7 @@ public class LoginActivity extends ActionBarActivity  {
 
         txtCodigo = (EditText) findViewById(R.id.txtCodigo);
         txtCpf = (EditText) findViewById(R.id.txtCpf);
+        button = (Button) findViewById(R.id.btnEntrar);
 
         preferences = PreferenceManager.getDefaultSharedPreferences(this);
         editor = preferences.edit();
@@ -50,8 +53,6 @@ public class LoginActivity extends ActionBarActivity  {
 
         fazLogin(codigo, cpf);
     }
-
-
 
     private void fazLogin(String codigo, String cpf) {
         new LoginTask(cpf, codigo).execute();
@@ -98,13 +99,28 @@ public class LoginActivity extends ActionBarActivity  {
         }
 
         @Override
+        protected void onPreExecute() {
+            button.setText(getString(R.string.aguarde));
+            button.setEnabled(false);
+        }
+
+        @Override
         protected void onPostExecute(Boolean aBoolean) {
             if (aBoolean){
+                editor.putString("cpf", cpf);
+                editor.putString("codigo", codigo);
+                editor.commit();
                 Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
                 startActivity(intent);
                 finish();
             }else{
-                Toast.makeText(LoginActivity.this, R.string.login_erro, Toast.LENGTH_LONG).show();
+                button.setText(getString(R.string.entrar));
+                button.setEnabled(true);
+                boolean contains = preferences.contains("cpf");
+                if (contains)
+                   Toast.makeText(LoginActivity.this, R.string.login_erro, Toast.LENGTH_LONG).show();
+                else
+                    Toast.makeText(LoginActivity.this, R.string.login_invalido, Toast.LENGTH_LONG).show();
             }
         }
     }

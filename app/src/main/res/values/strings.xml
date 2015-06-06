@@ -5,9 +5,11 @@
     <string name="action_settings">Settings</string>
     <string name="digiteCodigo">Digite seu código</string>
     <string name="digiteCpf">Digite seu CPF</string>
+    <string name="aguarde">Aguarde...</string>
     <string name="entrar">Entrar</string>
     <string name="login_help">Precisa de ajuda? Ligue para nós!</string>
     <string name="login_erro">Houve um erro ao tentar efetuar login</string>
+    <string name="login_invalido">Dados inválidos</string>
     <string name="buscar_amostras_erro">Houve um erro ao buscar as amostras</string>
     <string name="title_activity_home">HomeActivity</string>
 </resources>

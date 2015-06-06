@@ -4,6 +4,7 @@ import android.app.IntentService;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.google.gson.reflect.TypeToken;
@@ -50,10 +51,11 @@ public class BuscaAmostrasService extends IntentService {
                     conection.getInputStream()));
 
             List<Analise> analises = Constantes.getFromJSON(reader, new TypeToken<List<Analise>>(){});
-
+            Log.e("amostras", "foi buscar amostras");
             // TODO salvar as análises
         } catch (IOException e) {
             Toast.makeText(this, R.string.buscar_amostras_erro, Toast.LENGTH_LONG).show();
+            Log.e("amostras", "erro ao buscar");
         }
     }
 }

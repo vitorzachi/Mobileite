@@ -1,9 +1,12 @@
 package br.edu.unochapeco.mobileite;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import br.edu.unochapeco.mobileite.service.BuscaAmostrasService;
 
 
 public class HomeActivity extends ActionBarActivity {
@@ -12,6 +15,9 @@ public class HomeActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
+        Intent intent=new Intent(this, BuscaAmostrasService.class);
+        startService(intent);
     }
 
     @Override
