@@ -12,4 +12,6 @@
     <string name="login_invalido">Dados inválidos</string>
     <string name="buscar_amostras_erro">Houve um erro ao buscar as amostras</string>
     <string name="title_activity_home">HomeActivity</string>
+    <string name="atualizar">Atualizar</string>
+    <string name="pesquisar">Pesquisar</string>
 </resources>

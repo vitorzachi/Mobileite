@@ -24,8 +24,15 @@
             android:name=".HomeActivity"
             android:label="@string/title_activity_home" >
         </activity>
+        <activity
+            android:name=".Row"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name=".AnaliseDados"
+            android:label="@string/app_name" >
+        </activity>
 
-        <service android:name=".service.LoginService" />
         <service android:name=".service.BuscaAmostrasService" />
         <receiver android:name=".receivers.InternetLigadaReceiver" />
     </application>

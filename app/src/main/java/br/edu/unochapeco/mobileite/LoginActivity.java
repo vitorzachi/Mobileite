@@ -1,16 +1,11 @@
 package br.edu.unochapeco.mobileite;
 
-import android.content.ComponentName;
-import android.content.Context;
 import android.content.Intent;
-import android.content.ServiceConnection;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.IBinder;
 import android.preference.PreferenceManager;
 import android.support.v7.app.ActionBarActivity;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -22,7 +17,7 @@ import br.edu.unochapeco.mobileite.constantes.Constantes;
 import br.edu.unochapeco.mobileite.service.LoginService;
 
 
-public class LoginActivity extends ActionBarActivity  {
+public class LoginActivity extends ActionBarActivity {
 
     private SharedPreferences preferences;
     private SharedPreferences.Editor editor;
@@ -48,10 +43,9 @@ public class LoginActivity extends ActionBarActivity  {
         preferences = PreferenceManager.getDefaultSharedPreferences(this);
         editor = preferences.edit();
 
-        String codigo = preferences.getString("codigo", "");
-        String cpf = preferences.getString("cpf", "");
-
-        fazLogin(codigo, cpf);
+        if (preferences.getBoolean("logado", false)) {
+            vaiParaAmostras();
+        }
     }
 
     private void fazLogin(String codigo, String cpf) {
@@ -78,7 +72,6 @@ public class LoginActivity extends ActionBarActivity  {
     }
 
 
-
     public void entrar(View view) {
         txtCodigo = (EditText) findViewById(R.id.txtCodigo);
         txtCpf = (EditText) findViewById(R.id.txtCpf);
@@ -86,9 +79,16 @@ public class LoginActivity extends ActionBarActivity  {
         fazLogin(txtCodigo.getText().toString(), txtCpf.getText().toString());
     }
 
-    private class LoginTask extends AsyncTask<String, Void, Boolean>{
+    private void vaiParaAmostras() {
+        Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
+    private class LoginTask extends AsyncTask<String, Void, Boolean> {
         private final String cpf, codigo;
-        public LoginTask( String cpf, String codigo) {
+
+        public LoginTask(String cpf, String codigo) {
             this.cpf = cpf;
             this.codigo = codigo;
         }
@@ -106,19 +106,18 @@ public class LoginActivity extends ActionBarActivity  {
 
         @Override
         protected void onPostExecute(Boolean aBoolean) {
-            if (aBoolean){
+            if (aBoolean) {
                 editor.putString("cpf", cpf);
                 editor.putString("codigo", codigo);
+                editor.putBoolean("logado", true);
                 editor.commit();
-                Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
-                startActivity(intent);
-                finish();
-            }else{
+                vaiParaAmostras();
+            } else {
                 button.setText(getString(R.string.entrar));
                 button.setEnabled(true);
                 boolean contains = preferences.contains("cpf");
                 if (contains)
-                   Toast.makeText(LoginActivity.this, R.string.login_erro, Toast.LENGTH_LONG).show();
+                    Toast.makeText(LoginActivity.this, R.string.login_erro, Toast.LENGTH_LONG).show();
                 else
                     Toast.makeText(LoginActivity.this, R.string.login_invalido, Toast.LENGTH_LONG).show();
             }
