@@ -198,6 +198,16 @@
                 android:layout_height="wrap_content"
                 android:max="100" />
         </LinearLayout>
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20px"/>
+        <Button
+            android:id="@+id/AbrirMapa"
+            android:text="Abrir Mapa"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:onClick="AbrirMapa"/>
 
 
     </LinearLayout>

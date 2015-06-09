@@ -1,11 +1,13 @@
 package br.edu.unochapeco.mobileite;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.view.View;
 
 import br.edu.unochapeco.mobileite.constantes.Constantes;
 
@@ -72,5 +74,11 @@ public class AnaliseDados extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void AbrirMapa(View view) {
+        Intent intent = new Intent(this, Mapa.class);
+        startActivity(intent);
+
     }
 }

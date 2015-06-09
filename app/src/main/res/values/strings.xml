@@ -14,4 +14,5 @@
     <string name="title_activity_home">HomeActivity</string>
     <string name="atualizar">Atualizar</string>
     <string name="pesquisar">Pesquisar</string>
+    <string name="title_activity_mapa">Map</string>
 </resources>
