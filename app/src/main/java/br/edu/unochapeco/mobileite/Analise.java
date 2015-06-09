@@ -11,6 +11,8 @@ import br.edu.unochapeco.mobileite.constantes.Constantes;
  * Created by vitor on 28/05/15.
  */
 public class Analise implements Serializable {
+    private static final int max_ccs_cbt = 1000000;
+    private static final int max_proteina_gordura = 10;
     private Integer numero;
     private Date dataEnvio;
     private Date dataAnalise;
@@ -22,7 +24,23 @@ public class Analise implements Serializable {
     private float latitude;
     private float longitude;
 
-    public ContentValues getContentValues(){
+    public int getPercentagemCbt() {
+        return (int) cbt / max_ccs_cbt * 100;
+    }
+
+    public int getPercentagemCcs() {
+        return (int) ccs / max_ccs_cbt * 100;
+    }
+
+    public int getPercentagemGordura() {
+        return (int) gordura / max_proteina_gordura * 100;
+    }
+
+    public int getPercentagemProteina() {
+        return (int) proteina / max_proteina_gordura * 100;
+    }
+
+    public ContentValues getContentValues() {
         ContentValues contentValues = new ContentValues();
         contentValues.put("numero", numero);
         contentValues.put("dataenvio", Constantes.stringFromData(dataEnvio));
@@ -34,7 +52,7 @@ public class Analise implements Serializable {
         contentValues.put("latitude", latitude);
         contentValues.put("longitude", longitude);
 
-        return  contentValues;
+        return contentValues;
     }
 
 
@@ -94,7 +112,7 @@ public class Analise implements Serializable {
         this.ccs = ccs;
     }
 
-    public float getProteina() {
+    public Float getProteina() {
         return proteina;
     }
 
@@ -102,7 +120,7 @@ public class Analise implements Serializable {
         this.proteina = proteina;
     }
 
-    public float getGordura() {
+    public Float getGordura() {
         return gordura;
     }
 

@@ -4,18 +4,51 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ProgressBar;
+import android.widget.TextView;
+
+import br.edu.unochapeco.mobileite.constantes.Constantes;
 
 
 public class AnaliseDados extends ActionBarActivity {
+    private ProgressBar barCbt, barCcs, barProteina, barGordura;
+    private TextView nrAnalise, dataAnalise, dataEnvio;
+    private TextView numCbt, numCcs, numProteina, numGordura;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_analisedados);
 
+        barCbt = (ProgressBar) findViewById(R.id.progressCBT);
+        barCcs = (ProgressBar) findViewById(R.id.progressCCS);
+        barProteina = (ProgressBar) findViewById(R.id.progressProteina);
+        barGordura = (ProgressBar) findViewById(R.id.progressGordura);
+
+        nrAnalise = (TextView) findViewById(R.id.NumeroAnalise);
+        dataAnalise = (TextView) findViewById(R.id.DataAnalise);
+        dataEnvio = (TextView) findViewById(R.id.envioAnalise);
+
+        numCbt = (TextView) findViewById(R.id.numCbt);
+        numCcs = (TextView) findViewById(R.id.numCcs);
+        numProteina = (TextView) findViewById(R.id.numProteina);
+        numGordura = (TextView) findViewById(R.id.numGordura);
 
         Analise analise = (Analise) getIntent().getSerializableExtra("analise");
 
+        barCbt.setProgress(analise.getPercentagemCbt());
+        barCcs.setProgress(analise.getPercentagemCcs());
+        barProteina.setProgress(analise.getPercentagemProteina());
+        barGordura.setProgress(analise.getPercentagemGordura());
+
+        nrAnalise.setText(analise.getNumero().toString());
+        dataAnalise.setText(Constantes.stringFromData(analise.getDataAnalise()));
+        dataEnvio.setText(Constantes.stringFromData(analise.getDataEnvio()));
+
+        numCbt.setText(analise.getCbt());
+        numCcs .setText(analise.getCcs());
+        numProteina.setText(analise.getProteina().toString());
+        numGordura.setText(analise.getGordura().toString());
     }
 
 
