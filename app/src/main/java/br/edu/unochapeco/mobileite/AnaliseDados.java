@@ -12,6 +12,10 @@ public class AnaliseDados extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_analisedados);
+
+
+        Analise analise = (Analise) getIntent().getSerializableExtra("analise");
+
     }
 
 

@@ -1,12 +1,17 @@
 package br.edu.unochapeco.mobileite;
 
+import android.content.ContentValues;
+
+import java.io.Serializable;
 import java.util.Date;
+
+import br.edu.unochapeco.mobileite.constantes.Constantes;
 
 /**
  * Created by vitor on 28/05/15.
  */
-public class Analise {
-    private long numero;
+public class Analise implements Serializable {
+    private Integer numero;
     private Date dataEnvio;
     private Date dataAnalise;
     private int cbt;
@@ -16,6 +21,22 @@ public class Analise {
 
     private float latitude;
     private float longitude;
+
+    public ContentValues getContentValues(){
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("numero", numero);
+        contentValues.put("dataenvio", Constantes.stringFromData(dataEnvio));
+        contentValues.put("dataanalise", Constantes.stringFromData(dataAnalise));
+        contentValues.put("cbt", cbt);
+        contentValues.put("ccs", ccs);
+        contentValues.put("proteina", proteina);
+        contentValues.put("gordura", gordura);
+        contentValues.put("latitude", latitude);
+        contentValues.put("longitude", longitude);
+
+        return  contentValues;
+    }
+
 
     public float getLatitude() {
         return latitude;
@@ -33,11 +54,11 @@ public class Analise {
         this.longitude = longitude;
     }
 
-    public long getNumero() {
+    public Integer getNumero() {
         return numero;
     }
 
-    public void setNumero(long numero) {
+    public void setNumero(Integer numero) {
         this.numero = numero;
     }
 

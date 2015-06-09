@@ -4,7 +4,6 @@ import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
-import android.util.Log;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -13,12 +12,9 @@ import com.google.gson.reflect.TypeToken;
 import java.io.Reader;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Calendar;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
-
-import br.edu.unochapeco.mobileite.Analise;
 
 /**
  * Created by vitor on 01/06/15.
@@ -31,10 +27,23 @@ public class Constantes {
     public static final String URL_ANALISES_PATTERN = URL_AMOSTRAS + "?codigo=%s&cpf=%s";
     public static final String TEL_SUPORTE = "tel:4999188882";
     private static final Gson gson = new GsonBuilder().setDateFormat("dd-MM-yyyy-HH:mm").create();
+    private static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
     private Constantes() {
     }
 
+
+    public static Date dataFromString(String string) {
+        try {
+            return DATE_FORMAT.parse(string);
+        } catch (ParseException e) {
+            return null;
+        }
+    }
+
+    public static String stringFromData(Date date) {
+        return DATE_FORMAT.format(date);
+    }
 
     public static URL getUrlLogin(String cpf, String codigo) {
         try {

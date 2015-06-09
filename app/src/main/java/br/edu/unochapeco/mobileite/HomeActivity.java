@@ -5,13 +5,17 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.CursorAdapter;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.Toast;
+
+import br.edu.unochapeco.mobileite.service.BuscaAmostrasService;
 
 
 public class HomeActivity extends ActionBarActivity {
@@ -31,32 +35,33 @@ public class HomeActivity extends ActionBarActivity {
         setContentView(R.layout.activity_home);
 
         listView = (ListView) findViewById(R.id.listView1);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                //Log.e("amostra", String.valueOf(id));
+                //Log.e("amostra", String.valueOf(position));
+
+                Analise analise = helper.getAnalisePorId(Long.valueOf(id).intValue());
+                Intent intent = new Intent(HomeActivity.this, AnaliseDados.class);
+                intent.putExtra("analise", analise);
+                startActivity(intent);
+
+            }
+        });
+
+        Intent intent = new Intent(this, BuscaAmostrasService.class);
+        startService(intent);
 
         //cria instância da classe BaseDAO, responsável pela criação do Banco de Dados
         helper = new BaseDao(this);
 
         //executa rotinas internas para abrir/utilizar o banco de dados
         database = helper.getWritableDatabase();
-        InserindoDados();
+
         Carregadados();
 
     }
 
-    private void InserindoDados() {
-        //insere dados no banco de dados
-        database.execSQL("INSERT INTO analise (dataenvio, dataanalise, cbr, ccs, proteina, gordura) VALUES " +
-                "('19/02/2015', '19/02/2015', '30%',  '25%', '40', '55')");
-        database.execSQL("INSERT INTO analise (dataenvio, dataanalise, cbr, ccs, proteina, gordura) VALUES " +
-                "('19/03/2015', '19/03/2015', '30%',  '25%', '40', '55')");
-        database.execSQL("INSERT INTO analise (dataenvio, dataanalise, cbr, ccs, proteina, gordura) VALUES " +
-                "('19/04/2015', '19/04/2015', '30%',  '25%', '40', '55')");
-        database.execSQL("INSERT INTO analise (dataenvio, dataanalise, cbr, ccs, proteina, gordura) VALUES " +
-                "('19/05/2015', '19/05/2015', '30%',  '25%', '40', '55')");
-        database.execSQL("INSERT INTO analise (dataenvio, dataanalise, cbr, ccs, proteina, gordura) VALUES " +
-                "('19/06/2015', '19/06/2015', '30%',  '25%', '40', '55')");
-        database.execSQL("INSERT INTO analise (dataenvio, dataanalise, cbr, ccs, proteina, gordura) VALUES " +
-                "('19/07/2015', '19/07/2015', '30%',  '25%', '40', '55')");
-    }
 
     private void Carregadados() {
         //executa consulta geral de todos os registros cadastrados no banco de dados
@@ -85,7 +90,7 @@ public class HomeActivity extends ActionBarActivity {
         super.onDestroy();
 
         //deleta registros inseridos, simplesmente para limpar essa base que é de teste
-        database.execSQL("DELETE FROM ANALISE");
+        //database.execSQL("DELETE FROM ANALISE");
 
         //fecha a conexão com o Banco de dados
         database.close();
@@ -110,8 +115,4 @@ public class HomeActivity extends ActionBarActivity {
 
     }
 
-    public void visualizarDados(View view) {
-        Intent intent = new Intent(this, AnaliseDados.class);
-        startActivity(intent);
-    }
 }

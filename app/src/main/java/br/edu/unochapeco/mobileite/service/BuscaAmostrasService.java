@@ -17,6 +17,7 @@ import java.net.URLConnection;
 import java.util.List;
 
 import br.edu.unochapeco.mobileite.Analise;
+import br.edu.unochapeco.mobileite.BaseDao;
 import br.edu.unochapeco.mobileite.R;
 import br.edu.unochapeco.mobileite.constantes.Constantes;
 
@@ -40,6 +41,7 @@ public class BuscaAmostrasService extends IntentService {
 
     @Override
     protected void onHandleIntent(Intent intent) {
+        BaseDao baseDao = new BaseDao(this);
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         URL url = Constantes.
                 getUrlAnalises(sharedPreferences.getString("cpf", ""), sharedPreferences.getString("codigo", ""));
@@ -54,7 +56,9 @@ public class BuscaAmostrasService extends IntentService {
             Log.e("amostras", "foi buscar amostras");
             Log.e("amostras", analises.toString());
 
-            // TODO salvar as análises
+            for (Analise analise:analises){
+                baseDao.upsert(analise);
+            }
         } catch (IOException e) {
             Toast.makeText(this, R.string.buscar_amostras_erro, Toast.LENGTH_LONG).show();
             Log.e("amostras", "erro ao buscar");

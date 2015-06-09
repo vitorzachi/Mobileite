@@ -58,12 +58,6 @@
                 android:layout_height="match_parent"
                 android:src="@drawable/ampulheta" />
 
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="right"
-                android:onClick="visualizarDados"
-                android:text="Visualizar dados" />
         </LinearLayout>
     </LinearLayout>
 </RelativeLayout>
