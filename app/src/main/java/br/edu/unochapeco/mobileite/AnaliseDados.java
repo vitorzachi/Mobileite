@@ -44,11 +44,11 @@ public class AnaliseDados extends ActionBarActivity {
         barGordura.setProgress(analise.getPercentagemGordura());
 
         nrAnalise.setText(analise.getNumero().toString());
-        dataAnalise.setText(Constantes.stringFromData(analise.getDataAnalise()));
-        dataEnvio.setText(Constantes.stringFromData(analise.getDataEnvio()));
+        dataAnalise.setText(Constantes.stringFromData_pt_br(analise.getDataAnalise()));
+        dataEnvio.setText(Constantes.stringFromData_pt_br(analise.getDataEnvio()));
 
-        numCbt.setText(analise.getCbt());
-        numCcs .setText(analise.getCcs());
+        numCbt.setText(String.valueOf(analise.getCbt()));
+        numCcs .setText(String.valueOf(analise.getCcs()));
         numProteina.setText(analise.getProteina().toString());
         numGordura.setText(analise.getGordura().toString());
     }

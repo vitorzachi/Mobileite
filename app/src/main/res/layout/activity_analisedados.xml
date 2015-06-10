@@ -21,6 +21,7 @@
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
+                android:layout_weight="0.5"
                 android:text="Análise Nr. "
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
@@ -28,6 +29,7 @@
                 android:id="@+id/NumeroAnalise"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
+                android:layout_weight="0.5"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
         </LinearLayout>
 
@@ -39,12 +41,15 @@
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
+                android:layout_weight="0.5"
                 android:text="Data de envio "
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
-            <TextView android:id="@+id/envioAnalise"
+            <TextView
+                android:id="@+id/envioAnalise"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
+                android:layout_weight="0.5"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
         </LinearLayout>
@@ -57,13 +62,15 @@
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
+                android:layout_weight="0.5"
                 android:text="Data da Análise "
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <TextView
                 android:id="@+id/DataAnalise"
                 android:layout_width="fill_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5" />
 
         </LinearLayout>
 
@@ -92,11 +99,14 @@
                 <TextView
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
                     android:text="A amostra atingiu " />
 
-                <TextView android:id="@+id/numCbt"
+                <TextView
+                    android:id="@+id/numCbt"
                     android:layout_width="fill_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5" />
 
             </LinearLayout>
 
@@ -120,14 +130,17 @@
                 android:gravity="center"
                 android:orientation="horizontal">
 
-                <TextView android:id="@+id/numCcs"
+                <TextView
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
                     android:text="A amostra atingiu " />
 
                 <TextView
+                    android:id="@+id/numCcs"
                     android:layout_width="fill_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5" />
 
             </LinearLayout>
 
@@ -153,11 +166,14 @@
                 <TextView
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
                     android:text="A amostra atingiu " />
 
-                <TextView android:id="@+id/numProteina"
+                <TextView
+                    android:id="@+id/numProteina"
                     android:layout_width="fill_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5" />
 
             </LinearLayout>
 
@@ -183,11 +199,14 @@
                 <TextView
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
                     android:text="A amostra atingiu " />
 
-                <TextView android:id="@+id/numGordura"
+                <TextView
+                    android:id="@+id/numGordura"
                     android:layout_width="fill_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5" />
 
             </LinearLayout>
 
@@ -198,16 +217,18 @@
                 android:layout_height="wrap_content"
                 android:max="100" />
         </LinearLayout>
+
         <TextView
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:textSize="20px"/>
+            android:textSize="20px" />
+
         <Button
             android:id="@+id/AbrirMapa"
-            android:text="Abrir Mapa"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:onClick="AbrirMapa"/>
+            android:onClick="AbrirMapa"
+            android:text="Abrir Mapa" />
 
 
     </LinearLayout>

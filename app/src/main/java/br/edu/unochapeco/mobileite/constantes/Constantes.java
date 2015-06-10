@@ -22,6 +22,7 @@ import java.util.Date;
 public class Constantes {
 
     public static final String URL_LOGIN = "http://www.camtwo.com.br/mobileite/login.php";
+    public static final String date_pattern = "dd/MM/yyyy HH:mm";
     public static final String URL_AMOSTRAS = "http://www.camtwo.com.br/mobileite/amostras.php";
     public static final String URL_LOGIN_PATTERN = URL_LOGIN + "?codigo=%s&cpf=%s";
     public static final String URL_ANALISES_PATTERN = URL_AMOSTRAS + "?codigo=%s&cpf=%s";
@@ -43,6 +44,10 @@ public class Constantes {
 
     public static String stringFromData(Date date) {
         return DATE_FORMAT.format(date);
+    }
+
+    public static String stringFromData_pt_br(Date date) {
+        return new SimpleDateFormat(date_pattern).format(date);
     }
 
     public static URL getUrlLogin(String cpf, String codigo) {

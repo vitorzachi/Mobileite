@@ -11,8 +11,8 @@ import br.edu.unochapeco.mobileite.constantes.Constantes;
  * Created by vitor on 28/05/15.
  */
 public class Analise implements Serializable {
-    private static final int max_ccs_cbt = 1000000;
-    private static final int max_proteina_gordura = 10;
+    private static final float max_ccs_cbt = 1000000f;
+    private static final float max_proteina_gordura = 10f;
     private Integer numero;
     private Date dataEnvio;
     private Date dataAnalise;
@@ -24,20 +24,20 @@ public class Analise implements Serializable {
     private float latitude;
     private float longitude;
 
-    public int getPercentagemCbt() {
-        return (int) cbt / max_ccs_cbt * 100;
+    public Integer getPercentagemCbt() {
+        return Float.valueOf( cbt*1000f / max_ccs_cbt * 100f).intValue();
     }
 
-    public int getPercentagemCcs() {
-        return (int) ccs / max_ccs_cbt * 100;
+    public Integer getPercentagemCcs() {
+        return Float.valueOf(ccs*1000f / max_ccs_cbt * 100f).intValue();
     }
 
-    public int getPercentagemGordura() {
-        return (int) gordura / max_proteina_gordura * 100;
+    public Integer getPercentagemGordura() {
+        return Float.valueOf(gordura / max_proteina_gordura * 100f).intValue();
     }
 
-    public int getPercentagemProteina() {
-        return (int) proteina / max_proteina_gordura * 100;
+    public Integer getPercentagemProteina() {
+        return Float.valueOf(proteina / max_proteina_gordura * 100f).intValue();
     }
 
     public ContentValues getContentValues() {
@@ -96,7 +96,7 @@ public class Analise implements Serializable {
         this.dataAnalise = dataAnalise;
     }
 
-    public int getCbt() {
+    public Integer getCbt() {
         return cbt;
     }
 
@@ -104,7 +104,7 @@ public class Analise implements Serializable {
         this.cbt = cbt;
     }
 
-    public int getCcs() {
+    public Integer getCcs() {
         return ccs;
     }
 
