@@ -4,6 +4,7 @@ import android.app.IntentService;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
+import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -59,6 +60,9 @@ public class BuscaAmostrasService extends IntentService {
             for (Analise analise:analises){
                 baseDao.upsert(analise);
             }
+
+            Intent evento = new Intent("__analises_recebidas");
+            LocalBroadcastManager.getInstance(this).sendBroadcast(evento);
         } catch (IOException e) {
             Toast.makeText(this, R.string.buscar_amostras_erro, Toast.LENGTH_LONG).show();
             Log.e("amostras", "erro ao buscar");

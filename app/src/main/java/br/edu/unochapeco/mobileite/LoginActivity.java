@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.PersistableBundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
@@ -71,6 +72,11 @@ public class LoginActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    protected void onDestroy() {
+        editor.commit();
+        super.onDestroy();
+    }
 
     public void entrar(View view) {
         txtCodigo = (EditText) findViewById(R.id.txtCodigo);
@@ -110,7 +116,7 @@ public class LoginActivity extends ActionBarActivity {
                 editor.putString("cpf", cpf);
                 editor.putString("codigo", codigo);
                 editor.putBoolean("logado", true);
-                editor.commit();
+
                 vaiParaAmostras();
             } else {
                 button.setText(getString(R.string.entrar));
