@@ -102,8 +102,6 @@ public class HomeActivity extends ActionBarActivity {
                     campos, new int[]{R.id.NumeroAnalise, R.id.DataAnalise});
             //relaciona o dataSource ao próprio listview
             listView.setAdapter(dataSource);
-        } else {
-            Toast.makeText(this, "Nenhum registro encontrado", Toast.LENGTH_SHORT).show();
         }
     }
 
