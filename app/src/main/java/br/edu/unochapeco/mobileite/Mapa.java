@@ -60,6 +60,6 @@ public class Mapa extends FragmentActivity {
      * This should only be called once and when we are sure that {@link #mMap} is not null.
      */
     private void setUpMap() {
-        mMap.addMarker(new MarkerOptions().position(new LatLng(-27.082015, -52.632622)).title("Laticionio Tirol"));
+        mMap.addMarker(new MarkerOptions().position(new LatLng(-27.082015, -52.632622)).title("Laboratorio Exemplo"));
     }
 }

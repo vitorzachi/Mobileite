@@ -20,6 +20,10 @@
         android:gravity="center"
         android:text="@string/app_name"
         android:textSize="30dp" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="50px"/>
 
     <EditText android:id="@+id/txtCodigo"
         android:layout_width="match_parent"
@@ -35,16 +39,18 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/entrar" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="100px"/>
+
 
     <TextView
         android:layout_marginTop="30dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
+        android:onClick="ligarSuporte"
         android:text="@string/login_help"  />
 
-    <ImageView android:onClick="ligarSuporte"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:src="@drawable/telefone" />
 </LinearLayout>
